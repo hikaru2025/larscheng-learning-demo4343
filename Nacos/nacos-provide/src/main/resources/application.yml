@@ -1,0 +1,18 @@
+
+server:
+  port: 9527
+
+spring:
+  application:
+    name: nacos-provide
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1
+        namespace: 9e8253e9-4a5d-4d7f-843c-a52936b5d004
+        file-extension: yaml
+
+
+
+
