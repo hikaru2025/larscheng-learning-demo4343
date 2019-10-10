@@ -1,5 +1,7 @@
 package com.larscheng.www;
 
+import feign.hystrix.FallbackFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,12 +11,20 @@ import org.springframework.stereotype.Component;
  * @date 2019/7/10 16:02
  */
 @Component
-public class RemoteHystrix implements RemoteClient {
+@Log4j2
+public class RemoteHystrix implements FallbackFactory<RemoteClient> {
+
+
+
 
     @Override
-    public String helloNacos() {
-        return "请求超时了";
+    public RemoteClient create(Throwable throwable) {
+
+        return new RemoteClient() {
+            @Override
+            public String helloNacos() {
+                return "请求超时了";
+            }
+        };
     }
-
-
 }
